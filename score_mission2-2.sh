@@ -62,6 +62,7 @@ spec:
     image: cnsedu/mutating:1.0
 EOT
 kubectl apply -f "webhook.yaml"
+sleep 20
 
 echo "[`date +%Y%m%d_%T`]" >> $result_path
 
