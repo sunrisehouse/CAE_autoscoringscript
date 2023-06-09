@@ -11,13 +11,14 @@ mkdir -p "$log_dir"
 ###############################################################################
 
 initialize_answer_env() {
-  kubectl apply -f "$1"
+  kubectl apply -f $1
+  sleep 100
 }
 
 is_pass() {
-  kubectl logs trouble > "$1"
+  kubectl logs trouble > $1
   local complete_count=$(grep -c 'Mission Complete!!' "$1")
-  if [[ $complete_count -eq 1 ]]; then
+  if [$complete_count = 1 ]]; then
     return true
   else
     return false
@@ -25,7 +26,7 @@ is_pass() {
 }
 
 delete_answer_env() {
-  kubectl delete -f "$1"
+  kubectl delete -f $1
 }
 
 ###############################################################################
